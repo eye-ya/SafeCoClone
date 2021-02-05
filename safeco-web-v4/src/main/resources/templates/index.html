@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments :: head"></head>
+
+<body>
+	<nav th:replace="fragments :: nav"></nav>
+	<div align="center">
+		<div sec:authorize="isAuthenticated()">
+			Welcome <span sec:authentication="name">Username</span>!
+			
+		</div>
+		<form th:action="@{/logout}" method="post">
+			<input class="saveBtn" type="submit" value="Logout" />
+		</form>
+		<br> 
+		<br>
+		<br> 
+		<br>
+		<br> 
+		
+		<table border="1" cellpading="5"  class="the-table">
+			<thead>
+				<tr>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">Customer ID</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">First Name</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">Middle Name</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">Last Name</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">Street Address</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">City</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">State</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">Zip Code</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">Residence Type</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">Phone</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">Email</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">Make</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">Model</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">Year</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">Usage</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">Accidents</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">Driving Experience</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">DUI</a></th>
+					<th class="head-hover"><a th:href="@{'/page/' + ${currentPage} + '?sortField=id&amp;sortDir='+ ${reverseSortDir}}">Quote</a></th>
+					<th sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="customer : ${listCustomers}" class="head-hover">
+					<td th:text="${customer.id}" class="head-hover">Customer ID</td>
+					<td th:text="${customer.first}" class="head-hover">First Name</td>
+					<td th:text="${customer.middle}" class="head-hover">Middle Name</td>
+					<td th:text="${customer.last}" class="head-hover">Last Name</td>
+					<td th:text="${customer.street}" class="head-hover">Street Address</td>
+					<td th:text="${customer.city}" class="head-hover">City</td>
+					<td th:text="${customer.state}" class="head-hover">State</td>
+					<td th:text="${customer.zipcode}" class="head-hover">Zip Code</td>
+					<td th:text="${customer.residence}" class="head-hover">Residence Type</td>
+					<td th:text="${customer.phone}" class="head-hover">Phone</td>
+					<td th:text="${customer.email}" class="head-hover">Email</td>
+					<td th:text="${customer.make}" class="head-hover">Make</td>
+					<td th:text="${customer.model}" class="head-hover">Model</td>
+					<td th:text="${customer.year}" class="head-hover">Year</td>
+					<td th:text="${customer.usages}" class="head-hover">Usage</td>
+					<td th:text="${customer.accidents}" class="head-hover">Accidents</td>
+					<td th:text="${customer.experience}" class="head-hover">Driving Experience</td>
+					<td th:text="${customer.dui}" class="head-hover">DUI</td>
+					<td th:text="${customer.quote}" class="head-hover">Quote</td>
+					
+					<td>
+						<a th:href="@{'/edit/' + ${customer.id}}">Edit</a>
+						&nbsp;&nbsp;&nbsp;&nbsp; 
+						<a th:href="@{'/delete/' + ${customer.id}}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="page">
+			Total Items: [[${totalItems}]] <br><br>
+<!-- 			Page [[${currentPage}]] of [[${totalPages}]] <br> -->
+			<div class="directions">
+					<a th:if="${currentPage &gt; 1}" th:href="@{'/page/1?sortField='+ ${sortField}+'&sortDir='+ ${sortDir}}" class="dir">First</a> 
+					<span th:unless="${currentPage &gt; 1}">First</span> 
+				
+					&nbsp;&nbsp; 
+					
+					<a th:if="${currentPage &gt; 1}" th:href="@{'/page/' + ${currentPage-1} +'?sortField='+ ${sortField}+'&sortDir='+ ${sortDir}}"  class="dir">🢢</a> 
+					<span th:unless="${currentPage &gt; 1}">🢢</span> 
+					&nbsp;&nbsp; 
+					
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}"> 
+					<a th:if="${i !=currentPage}" th:href="@{'/page/' + ${i}} + '?sortField='+ ${sortField}+'&amp;sortDir='+ ${reverseSortDir}"  class="dir">[[${i}]]</a>
+					<span th:unless="${i !=currentPage}">[[${i}]]</span>
+					</span> 
+					&nbsp;&nbsp; 
+					
+					<a th:if="${currentPage &lt; totalPages}" th:href="@{'/page/' + ${currentPage+1} +'?sortField='+ ${sortField}+'&sortDir='+ ${sortDir}}"  class="dir">🢣</a> 
+					<span th:unless="${currentPage &lt; totalPages}">🢣</span> 
+					&nbsp;&nbsp;
+					
+					<a th:if="${currentPage &lt; totalPages}" th:href="@{'/page/' + ${totalPages} +'?sortField='+ ${sortField}+'&sortDir='+ ${sortDir}}" class="dir">Last</a> 
+					<span th:unless="${currentPage &lt; totalPages}">Last</span> 
+					
+					&nbsp;&nbsp;
+				</div>
+		</div>
+		</div>
+			<script type="text/javascript" th:replace="fragments :: js"></script>
+		
+</body>
+</html>

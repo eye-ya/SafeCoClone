@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>SafeCo</title>
+<link rel="stylesheet" th:href="@{/css/styles.css}"/> 
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script type="text/javascript" th:src="@{index.js}"></script>
+
+</head>
+<body>
+	<nav th:fragment="nav2" id="nav-bar">
+		<div class="menu-icon"><span class="fas fa-bars"></span></div>
+		<div class="logo"><a href="/" class="logo-hover">Safeco</a></div>
+		
+	</nav>
+	<div align="center">
+			<br>
+			<br>
+		<form action="#" th:action="@{/new}" method="post">
+			<table border="0" cellpadding="10">
+				<tr><td><input type="text" placeholder="zip code" id="zipcode"name="zipcode"></td></tr>
+				<tr>
+					<td><select>
+						<option>auto</option>
+						<option>homeowners</option>
+						<option>renters</option>
+						<option>condo</option>
+						<option>auto</option>
+					</select></td>
+				</tr>
+				<tr><td><button type="submit" class="saveBtn" th:onclick="handleSubmit()">START QUOTE</button></td></tr>
+			</table>
+		</form> 
+		
+		
+	</div>	
+</body>
+
+</html>

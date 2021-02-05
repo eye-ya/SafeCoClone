@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Create New Customer</title>
+<link rel="stylesheet" th:href="@{/css/styles.css}"/> 
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+</head>
+<body>
+<nav th:fragment="nav2" id="nav-bar">
+		<div class="menu-icon"><span class="fas fa-bars"></span></div>
+		<div class="logo"><a href="/" class="logo-hover">SafeCo</a></div>
+
+			
+	
+	</nav>
+<div align="center">
+		<br> <br>
+		<h1>Get Quote</h1>
+		<br />
+		<form action="#" th:action="@{/save}" th:object="${customer}"
+			method="post">
+
+			<table border="0" cellpadding="10">
+
+				<tr class="table-space">
+					<td>First Name</td>
+					<td><input type="text" th:field="*{first}" /></td>
+				</tr>
+				<tr class="table-space">
+					<td>Middle Name</td>
+					<td><input type="text" th:field="*{middle}" /></td>
+				</tr>
+				<tr class="table-space">
+					<td>Last Name</td>
+					<td><input type="text" th:field="*{last}" /></td>
+				</tr>
+				
+				<tr class="table-space">
+					<td>Street Address</td>
+					<td><input type="text" th:field="*{street}" /></td>
+				</tr>
+				<tr class="table-space">
+					<td>City</td>
+					<td><input type="text" th:field="*{city}" /></td>
+				</tr>
+
+				<tr class="table-space">
+					<td>State</td>
+					<td><input type="text" th:field="*{state}" /></td>
+				</tr>
+				<tr class="table-space">
+					<td>Zip Code</td>
+					<td><input type="text" th:field="*{zipcode}" id="result-zipcode"/></td>
+				</tr>
+				<tr class="table-space">
+					<td>Residence Type</td>
+					<td><input type="text" th:field="*{residence}" /></td>
+				</tr>
+				
+				<tr class="table-space">
+					<td>Phone</td>
+					<td><input type="text" th:field="*{phone}" /></td>
+				</tr>
+				<tr class="table-space">
+					<td>Email</td>
+					<td><input type="text" th:field="*{email}" /></td>
+				</tr>
+				<tr class="table-space">
+					<td>Make</td>
+					<td><input type="text" th:field="*{make}" /></td>
+				</tr>
+				<tr class="table-space">
+					<td>Model</td>
+					<td><input type="text" th:field="*{model}" /></td>
+				</tr>
+				<tr class="table-space">
+					<td>Year</td>
+					<td><input type="text" th:field="*{year}" /></td>
+				</tr>
+				<tr class="table-space">
+					<td>Usage</td>
+					<td><input type="text" th:field="*{usages}" /></td>
+				</tr>
+				<tr class="table-space">
+					<td>Accidents</td>
+					<td><input type="text" th:field="*{accidents}" /></td>
+				</tr>
+				<tr class="table-space">
+					<td>Driving Experience</td>
+					<td><input type="text" th:field="*{experience}" /></td>
+				</tr>
+				<tr class="table-space">
+					<td>DUI</td>
+					<td><input type="text" th:field="*{dui}" /></td>
+				</tr>
+				
+				
+				<tr class="table-space">
+					<td colspan="2">
+						<button type="submit" class="saveBtn">Save</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+		<script type="text/javascript" th:replace="fragments :: js"></script>
+		<script type="text/javascript" th:src="@{result.js}"></script>
+	
+</body>
+</html>
